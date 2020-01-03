@@ -1,0 +1,13 @@
+services:
+  - postgresql
+addons:
+  postgresql: 11.6
+  apt:
+    packages:
+    - postgresql-11.6-postgis-2.5
+before_script:
+  - psql -c 'create database spatial_db;' -U postgres
+  - psql -U postgres -d spatial_db -c "create extension postgis"
+  - psql -U postgres spatialdb < postgis.dump
+script: psql -X -U postgres -f postgres.sql -d spatialdb
+
