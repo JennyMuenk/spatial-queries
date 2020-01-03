@@ -6,8 +6,8 @@ addons:
     packages:
     - postgresql-9.6-postgis-2.3
 before_script:
-  - psql -c 'create database spatial_db;' -U postgres
-  - psql -U postgres -d spatial_db -c "create extension postgis"
+  - psql -c 'CREATE DATABASE spatial_db;' -U postgres
+  - psql -U postgres -d spatial_db -c "CREATE EXTENSION postgis;"
   - psql -U postgres spatialdb < postgis.dump
 script: psql -X -U postgres -f postgres.sql -d spatialdb
 
