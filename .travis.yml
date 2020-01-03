@@ -4,13 +4,13 @@ sudo: required
 services:
   - postgresql
 addons:
-  postgresql: 11.6
+  postgresql: 9.6
   apt:
     packages:
-    - postgresql-11.6-postgis-2.5
+    - postgresql-9.6-postgis-2.4
 before_script:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y postgresql-11.6-postgis-2.5
+  - sudo apt-get install -y postgresql-9.5-postgis-2.3
+  - sudo service postgresql restart
   - psql -c 'CREATE DATABASE spatial_db;' -U postgres
   - psql -U postgres -d spatial_db -c "CREATE EXTENSION postgis;"
   - psql -U postgres spatialdb < postgis.dump
